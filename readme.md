@@ -10,7 +10,7 @@ For use in Node or in the browser:
 npm install --save https://github.com/jrc03c/download-tables
 ```
 
-(In the browser, it's also possible to just copy and paste the contents of [this](https://raw.githubusercontent.com/jrc03c/download-tables/master/dist/download-tables.js?token=GHSAT0AAAAAABUCGBMDT7OKMFVIHAG6TPXIYTMC3LA) file into the developer console and then call `downloadTables()`.)
+(In the browser, it's also possible to just copy and paste the contents of [this](https://raw.githubusercontent.com/jrc03c/download-tables/master/dist/download-tables.js?token=GHSAT0AAAAAABUCGBMDT7OKMFVIHAG6TPXIYTMC3LA) file into the developer console and then invoke the `downloadTables` function.)
 
 For use at the command line:
 
