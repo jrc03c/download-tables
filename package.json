@@ -1,0 +1,20 @@
+{
+  "name": "download-tables",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "esbuild index.js --bundle --outfile=dist/download-tables.js --minify",
+    "watch": "esbuild index.js --bundle --outfile=dist/download-tables.js --minify --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jsdom": "^19.0.0",
+    "papaparse": "^5.3.2"
+  },
+  "devDependencies": {
+    "esbuild": "^0.14.38"
+  }
+}
