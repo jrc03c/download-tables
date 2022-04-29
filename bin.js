@@ -2,7 +2,6 @@
 const path = require("path")
 const downloadTables = require("./index.js")
 const fs = require("fs")
-const { JSDOM } = require("jsdom")
 
 const helpMessage = `
   Syntax:
@@ -26,8 +25,7 @@ files.forEach(file => {
   const filename = parts[parts.length - 1]
   const prefix = filename.split(".")[0] + "-"
   const raw = fs.readFileSync(file, "utf8")
-  const dom = new JSDOM(raw)
-  const savedFiles = downloadTables(dom.window.document, prefix)
+  const savedFiles = downloadTables(raw, prefix)
 
   savedFiles.forEach(savedFile => {
     console.log("SAVED:", savedFile)

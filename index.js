@@ -1,6 +1,7 @@
 const papa = require("papaparse")
 const fs = pseudoRequire("fs")
 const path = pseudoRequire("path")
+const jsdom = pseudoRequire("jsdom")
 
 function pseudoRequire(thing) {
   try {
@@ -32,13 +33,32 @@ function downloadText(text, filename) {
   }
 }
 
-function downloadTables(doc, prefix) {
+function downloadTables(raw, prefix) {
   prefix = prefix || ""
-  doc = typeof window !== "undefined" ? document : doc
+
+  const doc = (() => {
+    if (!raw) {
+      return document
+    }
+
+    try {
+      const doctype = document.implementation.createDocumentType("html", "", "")
+      const doc = document.implementation.createDocument("", "html", doctype)
+      doc.documentElement.innerHTML = raw
+      return doc
+    } catch (e) {}
+
+    try {
+      const dom = new jsdom.JSDOM(raw)
+      return dom.window.document
+    } catch (e) {}
+
+    return null
+  })()
 
   if (!doc) {
     throw new Error(
-      "In Node (but not in the browser), a JSDOM document — specifically the `dom.window.document` object — must be passed into the `downloadTables` function!"
+      "In Node (but not necessarily in the browser), an HTML string must be passed into the `downloadTables` function!"
     )
   }
 

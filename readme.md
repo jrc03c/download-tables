@@ -32,13 +32,9 @@ In the browser:
 In Node:
 
 ```js
-const { JSDOM } = require("jsdom")
 const fs = require("fs")
-
-const raw = fs.readFileSync("some_file.html", "utf8")
-const dom = new JSDOM(raw)
-
-downloadTables(dom.window.document)
+const rawHtml = fs.readFileSync("some_file.html", "utf8")
+downloadTables(rawHtml)
 ```
 
 At the command line:
