@@ -49,4 +49,4 @@ download-tables some_file.html
 download-tables *.html
 ```
 
-In the browser, CSV files will be downloaded the same way all other files are. When using the Node or command line versions, CSV files will be saved in the current working directory and numbered, like "table01.csv", "table02.csv", etc.
+In the browser, CSV files will be downloaded the same way all other files are and numbered like "table-0.csv", "table-1.csv", etc. When using the Node or command line versions, CSV files will be saved in the current working directory. They will be numbered and will use the name of the relevant HTML file(s) as prefix(es). For example, `download-tables foo.html` will produce the files "foo-table-0.csv", "foo-table-1.csv", etc.
