@@ -15,7 +15,9 @@ npm install --save https://github.com/jrc03c/extract-tables
 For use at the command line:
 
 ```bash
-npm install -g https://github.com/jrc03c/extract-tables
+git clone https://github.com/jrc03c/extract-tables
+cd extract-tables
+npm link
 ```
 
 # Usage
