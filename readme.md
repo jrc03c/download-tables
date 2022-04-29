@@ -34,7 +34,8 @@ In Node:
 ```js
 const fs = require("fs")
 const rawHtml = fs.readFileSync("some_file.html", "utf8")
-downloadTables(rawHtml)
+const savedFiles = downloadTables(rawHtml)
+console.log(savedFiles.join("\n"))
 ```
 
 At the command line:
