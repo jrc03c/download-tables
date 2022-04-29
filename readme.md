@@ -17,6 +17,7 @@ For use at the command line:
 ```bash
 git clone https://github.com/jrc03c/extract-tables
 cd extract-tables
+npm install
 npm link
 ```
 
