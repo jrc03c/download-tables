@@ -32,7 +32,8 @@ function downloadText(text, filename) {
   }
 }
 
-function downloadTables(doc) {
+function downloadTables(doc, prefix) {
+  prefix = prefix || ""
   doc = typeof window !== "undefined" ? document : doc
 
   if (!doc) {
@@ -42,6 +43,7 @@ function downloadTables(doc) {
   }
 
   const tables = Array.from(doc.getElementsByTagName("table"))
+  const savedFiles = []
 
   tables.forEach((table, i) => {
     const rows = Array.from(table.getElementsByTagName("tr"))
@@ -61,11 +63,14 @@ function downloadTables(doc) {
       columns: null,
     }
 
-    downloadText(
-      papa.unparse(out, settings),
-      leftPad(i, tables.length.toString().length) + ".csv"
-    )
+    const savedFile =
+      prefix + "table-" + leftPad(i, tables.length.toString().length) + ".csv"
+
+    downloadText(papa.unparse(out, settings), savedFile)
+    savedFiles.push(savedFile)
   })
+
+  return savedFiles
 }
 
 if (typeof module !== "undefined") {
