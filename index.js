@@ -17,7 +17,7 @@ function leftPad(x, n) {
   return out
 }
 
-function downloadText(text, filename) {
+function saveTextFile(text, filename) {
   // browser
   if (typeof window !== "undefined") {
     let a = document.createElement("a")
@@ -33,7 +33,7 @@ function downloadText(text, filename) {
   }
 }
 
-function downloadTables(raw, prefix) {
+function extractTables(raw, prefix) {
   prefix = prefix || ""
 
   const doc = (() => {
@@ -58,7 +58,7 @@ function downloadTables(raw, prefix) {
 
   if (!doc) {
     throw new Error(
-      "In Node (but not necessarily in the browser), an HTML string must be passed into the `downloadTables` function!"
+      "In Node (but not necessarily in the browser), an HTML string must be passed into the `extractTables` function!"
     )
   }
 
@@ -86,7 +86,7 @@ function downloadTables(raw, prefix) {
     const savedFile =
       prefix + "table-" + leftPad(i, tables.length.toString().length) + ".csv"
 
-    downloadText(papa.unparse(out, settings), savedFile)
+    saveTextFile(papa.unparse(out, settings), savedFile)
     savedFiles.push(savedFile)
   })
 
@@ -94,9 +94,9 @@ function downloadTables(raw, prefix) {
 }
 
 if (typeof module !== "undefined") {
-  module.exports = downloadTables
+  module.exports = extractTables
 }
 
 if (typeof window !== "undefined") {
-  window.downloadTables = downloadTables
+  window.extractTables = extractTables
 }

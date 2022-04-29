@@ -1,15 +1,15 @@
 #!/usr/bin/env node
 const path = require("path")
-const downloadTables = require("./index.js")
+const extractTables = require("./index.js")
 const fs = require("fs")
 
 const helpMessage = `
   Syntax:
 
-    \x1b[1m\x1b[33mdownload-tables <pattern>\x1b[0m
+    \x1b[1m\x1b[33mextract-tables <pattern>\x1b[0m
 
   The pattern argument selects the HTML files to read. It can be a single file
-  name or a glob pattern. Use \`download-tables --help\` to show this
+  name or a glob pattern. Use \`extract-tables --help\` to show this
   message again.
 `
 
@@ -25,7 +25,7 @@ files.forEach(file => {
   const filename = parts[parts.length - 1]
   const prefix = filename.split(".")[0] + "-"
   const raw = fs.readFileSync(file, "utf8")
-  const savedFiles = downloadTables(raw, prefix)
+  const savedFiles = extractTables(raw, prefix)
 
   savedFiles.forEach(savedFile => {
     console.log("SAVED:", savedFile)
